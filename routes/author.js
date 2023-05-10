@@ -11,15 +11,11 @@ router.route('/')
     res.status(200).json(result)
   })
   .post(async (req, res) => {
-    try {
-      const Post = getDB().collection('authors')
-      const { name, email, password } = req.body
-      const newPost =  { name, email, password }
-      const result = await Post.insertOne(newPost)
-      res.status(201).json({ ...result, message: 'author created' })
-    } catch (error) {
-      res.status(400).json({ error: { message: error.message}})
-    }
+    const Post = getDB().collection('authors')
+    const { name, email, password } = req.body
+    const newPost =  { name, email, password }
+    const result = await Post.insertOne(newPost)
+    res.status(201).json({ ...result, message: 'author created' })
   })
 
 export default router
