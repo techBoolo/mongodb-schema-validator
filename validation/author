@@ -1,0 +1,40 @@
+// this is nothing but the schema validation used for author collection in mongodb
+
+validator: {
+  $jsonSchema: {
+    title: 'author collection validator',
+    bsonType: 'object',
+    required: [ '_id', 'name', 'email', 'password' ],
+    properties: {
+      _id: {
+        bsonType: 'objectId'
+      },
+      name: {
+        bsonType: 'string',
+        minLength: 2
+      },
+      email: {
+        bsonType: 'string',
+        pattern: '^.+\@.+\\..+$',
+        description: 'must be valid email'
+      },
+      password: {
+        bsonType: 'string'
+        description: 'must be 60 char length, which is hashed with bcrypt'
+        minLength: 60,
+        maxLength: 60  
+      },
+      admin: {
+        bsonType: 'bool'
+      },
+      date: {
+        bsonType: 'date',
+        description: 'author created date'
+      },
+      updatedAt: {
+        bsonType: 'date'
+      }
+    },
+    additionalProperties: false
+  }
+} 
