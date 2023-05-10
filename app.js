@@ -1,12 +1,9 @@
 import express from 'express'
-import { getDB } from './config/db.js'
+import authorRoute from './routes/author.js'
 
 const app = express()
+app.use(express.json())
 
-app.use(async (req, res) => {
-  const Post = getDB().collection('authors')
-  const cursor = Post.find()
-  const result = await cursor.toArray()
-  res.status(200).json(result)
-})
+app.use('/authors', authorRoute)
+
 export default app
