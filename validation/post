@@ -1,0 +1,38 @@
+// schema validation for posts collection in mongodb
+
+validator: {
+  $jsonSchema: {
+    title: 'posts collection validator',
+    bsonType: 'object',
+    required: [ 'title', 'content', 'author_id', 'date' ],
+    properties: {
+      _id: {
+        bsonType: 'objectId'
+      },
+      title: {
+        bsonType: 'string',
+        description: 'title of the post, it is a string and required'
+      },
+      content: {
+        bsonType: 'string',
+        description: 'content of the post, it is a string and required'
+      },
+      author_id: {
+        bsonType: 'objectId',
+        description: 'the id of the author in which this post belongs to, is required'
+      },
+      date: {
+        bsonType: 'date',
+        description: 'post created date, and is required'
+      },
+      updatedAt: {
+        bsonType: 'date',
+        description: 'post updated date'
+      }
+    },
+    additionalProperties: false
+  }
+}
+
+// validationLevel and validationction, are left as default, which is 'strict'
+// and 'error', respectivelly

@@ -29,10 +29,11 @@ validator: {
       },
       date: {
         bsonType: 'date',
-        description: 'author created date'
+        description: 'author created date, and is required'
       },
       updatedAt: {
         bsonType: 'date'
+        description: 'author udpated date'
       }
     },
     additionalProperties: false
