@@ -11,10 +11,12 @@ validator: {
       },
       title: {
         bsonType: 'string',
+        minLength: 2,
         description: 'title of the post, it is a string and required'
       },
       content: {
         bsonType: 'string',
+        minLength: 2,
         description: 'content of the post, it is a string and required'
       },
       author_id: {

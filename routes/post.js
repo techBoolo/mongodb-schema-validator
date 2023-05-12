@@ -21,4 +21,22 @@ router.route('/')
     res.status(201).json({ ...response, message: 'post created' })
   })
 
+router.route('/:id/comments')
+  .post(async (req, res) => {
+    // get author_id from authentication
+    const author_id = new ObjectId("644cf87aa84043f07f35e04a")  
+    const { id } = req.params
+    const Comment = getDB().collection('comments')
+    const { content } = req.body
+    const newComment = { 
+      content, 
+      author_id, 
+      post_id: new ObjectId(id),
+      date: new Date()
+    }
+
+    const response = await Comment.insertOne(newComment)
+    res.status(201).json({ ...response, message: 'comment created'})
+  })
+
 export default router

@@ -1,0 +1,35 @@
+// schema validation for comment collection
+
+validator: {
+  $jsonSchema: {
+    title: 'comments collection validator',
+    bsonType: 'object',
+    required: [ '_id', 'content', 'author_id', 'post_id', 'date'  ],
+    properties: {
+      _id: {
+        bsonType: 'objectId',
+        description: 'id of the document'
+      },
+      content: {
+        bsonType: 'string',
+        description: 'must be a string and is required'
+      },
+      author_id: {
+        bsonType: 'objectId',
+        description: 'id of the author, and is required'
+      },
+      post_id: {
+        bsonType: 'objectId',
+        description: 'id of the post this comment belongs to, and is required'
+      },
+      date: {
+        bsonType: 'date',
+        description: 'current date, and is required'
+      },
+      updatedAt: {
+        bsonType: 'date',
+      }
+    },
+    additionalProperties: false
+  }
+}
